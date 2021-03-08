@@ -29,7 +29,7 @@ const newGame = () => {
 }
 
 const newGame1 = () => {
-    if(guess!==0){
+    if(gess!==0){
         let index1 = Math.floor(Math.random()*secondImages.length);
         if(latestIndex === index1){
             index1 = (index1+1)%secondImages.length;
