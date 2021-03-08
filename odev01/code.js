@@ -4,14 +4,14 @@ const secondImages = [
         "dog2.jpg",
 ];
 
-let tahmin = 2;
+let guess = 2;
 let latestIndex;
 let html;
 let html1;
 let html2;
 
 const newGame = () => {
-    if(tahmin!==0){
+    if(guess!==0){
         let index = Math.floor(Math.random()*secondImages.length);
         if(latestIndex === index){
             index = (index+1)%secondImages.length;
@@ -22,14 +22,14 @@ const newGame = () => {
         if(secondImages[0] === image){
             document.getElementById("alanId").innerHTML="Kazandın!!! Tebrik ederiz :) Yeni bir oyun oynamak istersen <span class='link' onclick='document.location.reload(true);'>buraya</span> tıklayabilirsin.";
         }
-        tahmin-=1;
+        guess-=1;
     }else{
         document.getElementById("alanId").innerHTML="Kaybettin :( Yeni bir oyun oynamak istersen <span class='link' onclick='document.location.reload(true);'>buraya</span> tıklayabilirsin.";
     }
 }
 
 const newGame1 = () => {
-    if(tahmin!==0){
+    if(guess!==0){
         let index1 = Math.floor(Math.random()*secondImages.length);
         if(latestIndex === index1){
             index1 = (index1+1)%secondImages.length;
@@ -41,13 +41,13 @@ const newGame1 = () => {
         if(secondImages[0] === image1){
             document.getElementById("alanId").innerHTML="Kazandın!!! Tebrik ederiz :) Yeni bir oyun oynamak istersen <span class='link' onclick='document.location.reload(true);'>buraya</span> tıklayabilirsin.";
         } 
-        tahmin-=1;
+        guess-=1;
     }else{
         document.getElementById("alanId").innerHTML="Kaybettin :( Yeni bir oyun oynamak istersen <span class='link' onclick='document.location.reload(true);'>buraya</span> tıklayabilirsin.";
     }
 }
 const newGame2 = () => {
-    if(tahmin!==0){
+    if(guess!==0){
         let index2 = Math.floor(Math.random()*secondImages.length);
         if(latestIndex === index2){
             index2 = (index2+1)%secondImages.length;
@@ -58,7 +58,7 @@ const newGame2 = () => {
         if(secondImages[0] === image2){
             document.getElementById("alanId").innerHTML="Kazandın!!! Tebrik ederiz :) Yeni bir oyun oynamak istersen <span class='link' onclick='document.location.reload(true);'>buraya</span> tıklayabilirsin.";
         } 
-        tahmin-=1;
+        guess-=1;
     }else{
         document.getElementById("alanId").innerHTML="Kaybettin :( Yeni bir oyun oynamak istersen <span class='link' onclick='document.location.reload(true);'>buraya</span> tıklayabilirsin.";
     }
