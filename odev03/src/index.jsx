@@ -1,35 +1,92 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM, { render } from "react-dom";
 
-import { newGame, newGame1, newGame2 } from "./game";
 
-class App extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {...this.state,
-            game:newGame(), 
-            game1:newGame1(),
-            game2:newGame2()
-        };
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        index: Math.floor(Math.random()*3),
+        durum: undefined,
+        kart: ["ilk.png","ilk.png","ilk.png"],
+        guess: 0,
+        game:false
+    };
+  }
+
+  selection = (indexA) => {
+    const { kart, index, guess, game } = this.state;
+    const secondImages = [
+        "cat.jpg",
+        "dog1.jpg",
+        "dog2.jpg",
+    ];
+
+    if(!game){
+        const kart = [...kart];
+        let durum;
+
+        if(index===indexA){
+            kart[indexA] = "cat.jpg";
+            durum = "Kazandın!!! Tebrik ederiz :)"
+        }else{
+            if(kart[indexA] = "dog1.jpg"){
+                if(guess===1){
+                    durum = "Kaybettin :("
+                }
+            }
+            if(kart[indexA] = "dog2.jpg"){
+                if(guess===1){
+                    durum = "Kaybettin :("
+                }
+            }
+        }
+        this.setState({
+            kart:kart,
+            guess: this.state.guess+1,
+            durum
+        });
+
+        if(durum){
+            this.setState({
+                game: true
+            })
+        }
+
+    }
+       
+  }
+
+    newGame = () =>{
+        this.setState({
+            index: Math.floor(Math.random()*3),
+            durum: undefined,
+            kart: ["ilk.png","ilk.png","ilk.png"],
+            guess: 0,
+            game:undefined
+        })
     }
 
-    render() {
-        const game = this.state.game;
-        const game1 = this.state.game1;
-        const game2 = this.state.game2;
-        return(
-            <>
-            <p>Bu oyunda 3 kapalı kart içindeki kediyi bulman gerekmektedir. İlk tercihte Kedi kartını bulamazsan 2. seçim hakkı tanınacaktır.</p>
-            <img id="img0" class="kart" src="ilk.png" onclick={()=>this.game.newGame()}/>
-            <img id="img1" class="kart" src="ilk.png" onclick={()=>this.game1.newGame1()}/>
-            <img id="img2" class="kart" src="ilk.png" onclick={()=>this.game2.newGame2()}/>
-            <div class="mesaj">
-            <p id="alanId">Kedi kartını bulmak için kartın üzerine tıklamalısın.</p>
-            <p id="kazandiId" style="display: none"></p>
-            <p id="yenildiId" style="display: none"></p>
-            </div>
-        </>);
-    }
+  render() {
+    const { kart, durum } = this.state;
+    return (
+      <div>
+        <p>
+          Bu oyunda 3 kapalı kart içindeki kediyi bulman gerekmektedir. İlk
+          tercihte Kedi kartını bulamazsan 2. seçim hakkı tanınacaktır.
+        </p>
+        <img className="kart" src={kart[0]} onClick={()=>{this.selection(0)}}/>
+    <img className="kart" src={kart[1]} onClick={()=>{this.selection(1)}}/>
+    <img className="kart" src={kart[2]} onClick={()=>{this.selection(2)}}/>
+    <div className="mesaj">
+        <p>{durum?durum:"Kedi kartını bulmak için kartın üzerine tıklamalısın."}</p>
+        {durum && <p>
+            Yeni bir oyun oynamak istersen <span onClick={this.newGame} className='link'>buraya</span> tıklayabilirsin.
+        </p>}
+    </div>
+      </div>
+    );
+  }
 }
 
-ReactDOM.render(<App/>, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
